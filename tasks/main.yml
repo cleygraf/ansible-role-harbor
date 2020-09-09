@@ -5,7 +5,7 @@
     name:
       - docker
       - pyyaml>=3.11
-#      - docker-compose>=1.7.0
+      - docker-compose>=1.7.0
 
 - name: Checking if Harbor is already installed
   stat:
