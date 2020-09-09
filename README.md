@@ -6,7 +6,7 @@ This role is in alpha stage. Issues and PRs are welcome.
 
 ## Requirements
 
-None.
+If using CENTOS7 minimal install, two additional packages are required: python2-pip and python-setuptools
 
 ## Role Variables
 
