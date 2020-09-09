@@ -92,7 +92,7 @@
 
 - name: Running Harbor installer...
   become: yes
-  shell: "{{ harbor_install_dir }}/install.sh"
+  shell: "{{ harbor_install_dir }}/harbor/install.sh"
   when:
     - not harbor_folder_st.stat.exists or (harbor_folder_st.stat.isdir is defined and not harbor_folder_st.stat.isdir)
 
