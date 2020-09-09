@@ -3,7 +3,7 @@
   pip:
     state: present
     name:
-#      - docker
+      - docker
       - pyyaml>=3.11
 #      - docker-compose>=1.7.0
 
@@ -81,20 +81,20 @@
     - "nginx.http.conf"
     - "nginx.https.conf"
 
-# - name: Running Harbor installer...
-#   become: yes
-#   command: "./install.sh {{ harbor_installer_with }} {{ harbor_installer_extra_args }}"
-#   args:
-#     chdir: "{{ harbor_install_dir }}/harbor"
-#     creates: '{{ harbor_install_dir }}/harbor/harbor_install_log.txt'
-#   when:
-#     - not harbor_folder_st.stat.exists or (harbor_folder_st.stat.isdir is defined and not harbor_folder_st.stat.isdir)
-
 - name: Running Harbor installer...
   become: yes
-  shell: "PATH=\"/usr/local/bin:$PATH\" && {{ harbor_install_dir }}/harbor/install.sh"
+  command: "./install.sh {{ harbor_installer_with }} {{ harbor_installer_extra_args }}"
+  args:
+    chdir: "{{ harbor_install_dir }}/harbor"
+    creates: '{{ harbor_install_dir }}/harbor/harbor_install_log.txt'
   when:
     - not harbor_folder_st.stat.exists or (harbor_folder_st.stat.isdir is defined and not harbor_folder_st.stat.isdir)
+
+# - name: Running Harbor installer...
+#   become: yes
+#   shell: "PATH=\"/usr/local/bin:$PATH\" && {{ harbor_install_dir }}/harbor/install.sh"
+#   when:
+#     - not harbor_folder_st.stat.exists or (harbor_folder_st.stat.isdir is defined and not harbor_folder_st.stat.isdir)
 
 - name: "Setting permissions on Harbor common folder......"
   file:
